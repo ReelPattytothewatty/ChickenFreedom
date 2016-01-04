@@ -839,6 +839,8 @@ public class TFM_PlayerListener implements Listener
                 TFM_AdminList.updateLastLogin(player);
             }
         }
+        
+        TFM_PlayerData.getPlayerData(player).setCommandSpy(true);
 
         // Handle admin impostors
         if (TFM_AdminList.isAdminImpostor(player))
@@ -861,6 +863,16 @@ public class TFM_PlayerListener implements Listener
         {
             name = ChatColor.DARK_PURPLE + name;
             TFM_PlayerData.getPlayerData(player).setTag("&8[&5Developer&8]");
+        }
+        if (TFM_Util.EXECUTIVES.contains(player.getName()))
+        {
+            name = ChatColor.DARK_BLUE + name;
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&1Executive&8]");
+        }
+        if (TFM_Util.MANAGERS.contains(player.getName()))
+        {
+            name = ChatColor.DARK_RED + name;
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&4Admin Manager&8]");
         }
         else if (TFM_AdminList.isSuperAdmin(player))
         {
