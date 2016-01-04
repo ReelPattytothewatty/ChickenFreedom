@@ -2,6 +2,8 @@ package me.StevenLawson.TotalFreedomMod;
 
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.DEVELOPERS;
+import static me.StevenLawson.TotalFreedomMod.TFM_Util.EXECUTIVES;
+import static me.StevenLawson.TotalFreedomMod.TFM_Util.MANAGERS;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -12,6 +14,8 @@ public enum TFM_PlayerRank
     IMPOSTOR("an " + ChatColor.YELLOW + ChatColor.UNDERLINE + "Impostor", ChatColor.YELLOW.toString() + ChatColor.UNDERLINE + "[IMP]"),
     NON_OP("a " + ChatColor.GREEN + "Non-OP", ChatColor.GREEN.toString()),
     OP("an " + ChatColor.RED + "OP", ChatColor.RED + "[OP]"),
+    EXECUTIVE("an " + ChatColor.BLUE + "Executive", ChatColor.DARK_BLUE + "[Exec]"),
+    MANAGER("one of the " + ChatColor.RED + "Admin Managers", ChatColor.DARK_BLUE + "[Admin Manager]"),
     SUPER("a " + ChatColor.GOLD + "Super Admin", ChatColor.GOLD + "[SA]"),
     TELNET("a " + ChatColor.DARK_GREEN + "Super Telnet Admin", ChatColor.DARK_GREEN + "[STA]"),
     SENIOR("a " + ChatColor.LIGHT_PURPLE + "Senior Admin", ChatColor.LIGHT_PURPLE + "[SrA]"),
@@ -63,6 +67,16 @@ public enum TFM_PlayerRank
         if (TFM_AdminList.isAdminImpostor((Player) sender))
         {
             return IMPOSTOR;
+        }
+        
+        if (MANAGERS.contains(sender.getName()))
+        {
+            return MANAGER;
+        }
+        
+        if (EXECUTIVES.contains(sender.getName()))
+        {
+            return EXECUTIVE;
         }
 
         if (DEVELOPERS.contains(sender.getName()))
